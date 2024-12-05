@@ -81,7 +81,7 @@
 
     <center>
         <h1>Motivational Msg</h1>
-        <form onsubmit="gm()">
+        <form onsubmit="gm(event)">
             <input type="submit" value="Get Motivational Msg" />
         </form>
         <h2 id="msg"></h2>
@@ -100,25 +100,25 @@
             {
                 quote: "The only way to do great work is to love what you do.",
                 author: "Steve Jobs",
-                background: "url('images/ss1.jpg')"
+                background: "https://anomaly28.github.io/motivationa_app_task_1/ss1.jpg"
             },
             {
                 quote: "Believe you can and you're halfway there.",
                 author: "Theodore Roosevelt",
-                background: "url('images/ss2.jpg')"
+                background: "https://anomaly28.github.io/motivationa_app_task_1/ss2.jpg"
             },
             {
                 quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
                 author: "Winston Churchill",
-                background: "url('images/ss3.jpg')"
+                background: "https://anomaly28.github.io/motivationa_app_task_1/ss3.jpg"
             }
         ];
 
         // Counter to keep track of the current quote
         let currentIndex = 0;
 
-        function gm() {
-            event.preventDefault();
+        function gm(event) {
+            event.preventDefault(); // Prevent page reload on form submit
 
             // Get the current quote and background
             const selectedItem = quotesWithBackgrounds[currentIndex];
@@ -127,8 +127,15 @@
             document.getElementById("msg").innerHTML = selectedItem.quote;
             document.getElementById("aut").innerHTML = selectedItem.author;
 
-            // Update the background
-            document.body.style.backgroundImage = selectedItem.background;
+            // Log background image change to debug
+            console.log("Setting background image: " + selectedItem.background);
+            
+            // Update the background image properly
+            document.body.style.backgroundImage = "url('" + selectedItem.background + "')";
+            
+            // Ensure the background image is applied
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
 
             // Increment the index and loop back to the start if necessary
             currentIndex = (currentIndex + 1) % quotesWithBackgrounds.length;
