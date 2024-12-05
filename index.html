@@ -8,10 +8,12 @@
             font-family: Calibri;
         }
         body {
-            background-size: cover;
-            transition: background 0.5s ease-in-out;
             margin: 0;
             padding: 0;
+            background-color: lemonchiffon; /* Set initial background to lemon yellow */
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out;
         }
         .moving-text-container {
             position: relative;
@@ -133,10 +135,6 @@
             // Update the background image properly
             document.body.style.backgroundImage = "url('" + selectedItem.background + "')";
             
-            // Ensure the background image is applied
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
-
             // Increment the index and loop back to the start if necessary
             currentIndex = (currentIndex + 1) % quotesWithBackgrounds.length;
         }
