@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motivational Msg</title>
+    <style>
+        * {
+            font-size: 40px;
+            font-family: Calibri;
+        }
+        body {
+            background-size: cover;
+            transition: background 0.5s ease-in-out;
+            margin: 0;
+            padding: 0;
+        }
+        .moving-text-container {
+            position: relative;
+            width: 100%; /* Full width of the screen */
+            overflow: hidden;
+            height: 60px;
+            color: #ff5722;
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+        .moving-text {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff5722;
+            position: absolute;
+            white-space: nowrap;
+            animation: moveText 15s linear infinite;
+        }
+        h2 {
+            border: solid;
+            background-color: white;
+            display: inline-block;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 80%;
+            word-wrap: break-word;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        @keyframes moveText {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Button Styling */
+        .redirect-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff5722;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .redirect-button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <!-- Moving Text Container -->
+    <div class="moving-text-container">
+        <span class="moving-text">
+            "You can do it!!!"
+        </span>
+    </div>
+
+    <center>
+        <h1>Motivational Msg</h1>
+        <form onsubmit="gm()">
+            <input type="submit" value="Get Motivational Msg" />
+        </form>
+        <h2 id="msg"></h2>
+        <br/>
+        <h2 id="aut"></h2>
+    </center>
+
+    <!-- Redirect Button -->
+    <button class="redirect-button" onclick="window.location.href='to-do-list.html'">
+        Go to To-Do List Suggestions
+    </button>
+
+    <script>
+        // Array of quotes paired with their backgrounds
+        const quotesWithBackgrounds = [
+            {
+                quote: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs",
+                background: "url('images/ss1.jpg')"
+            },
+            {
+                quote: "Believe you can and you're halfway there.",
+                author: "Theodore Roosevelt",
+                background: "url('images/ss2.jpg')"
+            },
+            {
+                quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                author: "Winston Churchill",
+                background: "url('images/ss3.jpg')"
+            }
+        ];
+
+        // Counter to keep track of the current quote
+        let currentIndex = 0;
+
+        function gm() {
+            event.preventDefault();
+
+            // Get the current quote and background
+            const selectedItem = quotesWithBackgrounds[currentIndex];
+
+            // Update the quote and author
+            document.getElementById("msg").innerHTML = selectedItem.quote;
+            document.getElementById("aut").innerHTML = selectedItem.author;
+
+            // Update the background
+            document.body.style.backgroundImage = selectedItem.background;
+
+            // Increment the index and loop back to the start if necessary
+            currentIndex = (currentIndex + 1) % quotesWithBackgrounds.length;
+        }
+    </script>
+</body>
+</html>
